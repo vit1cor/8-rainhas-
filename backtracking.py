@@ -1,4 +1,6 @@
 from utils import print_board, initialize_board
+from backtracking import todas_solucoes as backtracking_92
+
 
 class BacktrackingSolver:
     def __init__(self, n):
