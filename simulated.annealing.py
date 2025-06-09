@@ -1,5 +1,8 @@
 import random
 import math
+from utils.visualizacao import desenhar_tabuleiro
+
+
 
 # Gera um estado inicial aleatório (uma rainha por coluna, linha aleatória)
 def gerar_estado_inicial():
@@ -43,3 +46,9 @@ def simulated_annealing():
             break
 
     return estado, iteracoes
+def simulated_annealing():
+    ...
+    if conflitos(estado) == 0:
+        desenhar_tabuleiro(estado, "Simulated Annealing - Solução")
+        break
+    ...
