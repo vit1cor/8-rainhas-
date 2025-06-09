@@ -1,10 +1,10 @@
 import time
 import tracemalloc
-from backtracking import resolver_8_rainhas as backtracking
+from backtracking import todas_solucoes as backtracking_92
 from hill_climbing import hill_climbing
 from simulated_annealing import simulated_annealing
 
-# Medidor de tempo e memória
+# Avaliação individual (1 solução)
 def avaliar_algoritmo(nome, funcao):
     tracemalloc.start()
     inicio = time.time()
@@ -12,7 +12,7 @@ def avaliar_algoritmo(nome, funcao):
     fim = time.time()
     memoria_usada, _ = tracemalloc.get_traced_memory()
     tracemalloc.stop()
-    
+
     return {
         'algoritmo': nome,
         'tempo': fim - inicio,
@@ -21,17 +21,34 @@ def avaliar_algoritmo(nome, funcao):
         'solucao': solucao
     }
 
-# Executa as avaliações
+# Busca todas as 92 soluções com backtracking
+def buscar_todas_backtracking():
+    from backtracking import todas_solucoes
+    inicio = time.time()
+    solucoes = todas_solucoes()
+    fim = time.time()
+    return len(solucoes), fim - inicio
+
+# Executa benchmarks
 resultados = [
-    avaliar_algoritmo("Backtracking", lambda: (backtracking(), 1)),  # apenas 1 iteração
+    avaliar_algoritmo("Backtracking", lambda: (backtracking_92()[0], 1)),
     avaliar_algoritmo("Hill Climbing", hill_climbing),
     avaliar_algoritmo("Simulated Annealing", simulated_annealing),
 ]
 
-# Exibe os resultados
+# Imprime resultados (1 solução)
+print("\n🧠 Tempo e memória para encontrar 1 solução:\n")
 for r in resultados:
-    print(f"\nAlgoritmo: {r['algoritmo']}")
-    print(f"Tempo: {r['tempo']:.4f} segundos")
-    print(f"Memória: {r['memoria (KB)']:.2f} KB")
-    print(f"Iterações: {r['iteracoes']}")
-    print(f"Solução: {r['solucao']}")
+    print(f"Algoritmo: {r['algoritmo']}")
+    print(f"  Tempo: {r['tempo']:.4f} segundos")
+    print(f"  Memória: {r['memoria (KB)']:.2f} KB")
+    print(f"  Iterações: {r['iteracoes']}")
+    print(f"  Solução: {r['solucao']}")
+    print()
+
+# Busca todas as 92 soluções usando backtracking
+print("🔍 Buscando as 92 soluções com Backtracking...")
+total, tempo_total = buscar_todas_backtracking()
+print(f"\n✅ Total de soluções encontradas: {total}")
+print(f"⏱ Tempo: {tempo_total:.4f} segundos\n")
+
