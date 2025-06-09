@@ -1,5 +1,11 @@
 from utils import print_board, initialize_board
 from backtracking import todas_solucoes as backtracking_92
+from utils.visualizacao import desenhar_tabuleiro
+
+if __name__ == "__main__":
+    ...
+    if first_solution:
+        desenhar_tabuleiro(first_solution, "Backtracking - Solução Única")
 
 solucoes = backtracking_92()
 
